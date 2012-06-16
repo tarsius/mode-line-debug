@@ -1,0 +1,1 @@
+{"name":"mode-line-debug.el","body":"When `debug-on-error` is `t` show `?` before the mode display in the mode line, otherwise a space. To toggle `debug-on-errors` state press that button. That's all.","tagline":"show status of debug-on-error in the mode line","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
