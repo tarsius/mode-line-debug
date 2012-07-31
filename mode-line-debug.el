@@ -29,15 +29,6 @@
 
 ;;; Code:
 
-;;;###autoload
-(define-minor-mode mode-line-debug-mode
-  "Mode to show the status of `debug-on-error' in the mode line."
-  :global t
-  (set-default 'mode-line-modes
-	       (if mode-line-debug-mode
-		   (cons mode-line-debug mode-line-modes)
-		 (delete mode-line-debug mode-line-modes))))
-
 (defconst mode-line-debug
   '(:eval
     (cond (debug-on-error
@@ -56,6 +47,15 @@
 
 (put 'mode-line-debug 'risky-local-variable t)
 (make-variable-buffer-local 'mode-line-debug)
+
+;;;###autoload
+(define-minor-mode mode-line-debug-mode
+  "Mode to show the status of `debug-on-error' in the mode line."
+  :global t
+  (set-default 'mode-line-modes
+	       (if mode-line-debug-mode
+		   (cons mode-line-debug mode-line-modes)
+		 (delete mode-line-debug mode-line-modes))))
 
 (provide 'mode-line-debug)
 ;;; mode-line-debug.el ends here
