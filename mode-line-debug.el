@@ -70,7 +70,7 @@ to have any effect."
                (string :tag "Off Indicator")))
 
 (defconst mode-line-debug
-  '(:eval (mode-line-debug-control)))
+  '(mode-line-debug-mode (:eval (mode-line-debug-control))))
 
 (defun mode-line-debug-control ()
   (cond (debug-on-error
