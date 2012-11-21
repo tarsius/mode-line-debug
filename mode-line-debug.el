@@ -30,11 +30,22 @@
 
 ;; Show the status of `debug-on-error' in the mode line.
 
+;; This provides Mode-Line-Debug mode whidh depending on the state of
+;; `debug-on-error' inserts a different string into the mode-line
+;; before the list of active modes.  The inserted character can be
+;; used to toggle the state of `debug-on-error' can be customized
+;; using `mode-line-debug-strings'.
+
 ;;; Code:
 
 ;;;###autoload
 (define-minor-mode mode-line-debug-mode
-  "Mode to show the status of `debug-on-error' in the mode line."
+  "Mode to show the status of `debug-on-error' in the mode line.
+
+Depending on the state of `debug-on-error' this mode inserts a
+different string into the mode-line before the list of active
+modes.  The inserted character can be used to toggle the state of
+`debug-on-error'."
   :global t
   :group 'mode-line
   ;; We cannot insert `mode-line-debug' but have to insert it's value
