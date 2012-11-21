@@ -4,12 +4,9 @@
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
 ;; Created: 20120526
-;; Version: 1.0.1
+;; Version: 1.1.0
 ;; Homepage: https://github.com/tarsius/mode-line-debug
 ;; Keywords: convenience, lisp
-
-;; This is a beta release.  Version numbers are inspired by how
-;; Emacs is versioned - 1.1.0 will be the first stable version.
 
 ;; This file is not part of GNU Emacs.
 
