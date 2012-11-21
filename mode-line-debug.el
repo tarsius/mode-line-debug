@@ -36,6 +36,9 @@
 (define-minor-mode mode-line-debug-mode
   "Mode to show the status of `debug-on-error' in the mode line."
   :global t
+  ;; We cannot insert `mode-line-debug' but have to insert it's value
+  ;; because we insert at the head of `mode-line-modes'. A list whose
+  ;; car is a symbol is interpreted as (SYMBOL THEN ELSE).
   (setq mode-line-modes (delete mode-line-debug mode-line-modes))
   (when mode-line-debug-mode
     (setq mode-line-modes (cons mode-line-debug mode-line-modes))))
