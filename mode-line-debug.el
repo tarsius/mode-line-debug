@@ -44,19 +44,35 @@
   (when mode-line-debug-mode
     (setq mode-line-modes (cons mode-line-debug mode-line-modes))))
 
+(defcustom mode-line-debug-strings '("?" . " ")
+  "Strings indicating the state of `debug-on-error' in the mode-line.
+
+The car is used when `debug-on-error' is off, the cdr when it is
+off.  For the off state a string consisting of one space makes
+most sense; this avoids cluttering the mode-line but still allows
+clicking before the list of modes to toggle `debug-on-error'.
+
+Also see `mode-line-debug-mode' which has to be enabled for this
+to have any effect."
+  :group 'mode-line
+  :type '(cons (string :tag "On Indicator")
+               (string :tag "Off Indicator")))
+
 (defconst mode-line-debug
   '(:eval (mode-line-debug-control)))
 
 (defun mode-line-debug-control ()
   (cond (debug-on-error
          (propertize
-          "?" 'help-echo "Debug on Error is enabled\nmouse-1 toggle"
+          (car mode-line-debug-strings)
+          'help-echo "Debug on Error is enabled\nmouse-1 toggle"
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map
                                 'mouse-1 #'toggle-debug-on-error))))
         (t
          (propertize
-          " " 'help-echo "Debug on Error is disabled\nmouse-1 toggle"
+          (cdr mode-line-debug-strings)
+          'help-echo "Debug on Error is disabled\nmouse-1 toggle"
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map
                                 'mouse-1 #'toggle-debug-on-error))))))
