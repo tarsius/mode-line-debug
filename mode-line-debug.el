@@ -32,33 +32,33 @@
 
 ;;; Code:
 
-(defconst mode-line-debug
-  '(:eval
-    (cond (debug-on-error
-           (propertize
-            "?" 'help-echo "Debug on Error is enabled\nmouse-1 toggle"
-            'mouse-face 'mode-line-highlight
-            'local-map (purecopy (make-mode-line-mouse-map
-                                  'mouse-1 #'toggle-debug-on-error))))
-          (t
-           (propertize
-            " " 'help-echo "Debug on Error is disabled\nmouse-1 toggle"
-            'mouse-face 'mode-line-highlight
-            'local-map (purecopy (make-mode-line-mouse-map
-                                  'mouse-1 #'toggle-debug-on-error)))))))
-
-
-(put 'mode-line-debug 'risky-local-variable t)
-(make-variable-buffer-local 'mode-line-debug)
-
 ;;;###autoload
 (define-minor-mode mode-line-debug-mode
   "Mode to show the status of `debug-on-error' in the mode line."
   :global t
-  (set-default 'mode-line-modes
-               (if mode-line-debug-mode
-                   (cons mode-line-debug mode-line-modes)
-                 (delete mode-line-debug mode-line-modes))))
+  (setq mode-line-modes (delete mode-line-debug mode-line-modes))
+  (when mode-line-debug-mode
+    (setq mode-line-modes (cons mode-line-debug mode-line-modes))))
+
+(defconst mode-line-debug
+  '(:eval (mode-line-debug-control)))
+
+(defun mode-line-debug-control ()
+  (cond (debug-on-error
+         (propertize
+          "?" 'help-echo "Debug on Error is enabled\nmouse-1 toggle"
+          'mouse-face 'mode-line-highlight
+          'local-map (purecopy (make-mode-line-mouse-map
+                                'mouse-1 #'toggle-debug-on-error))))
+        (t
+         (propertize
+          " " 'help-echo "Debug on Error is disabled\nmouse-1 toggle"
+          'mouse-face 'mode-line-highlight
+          'local-map (purecopy (make-mode-line-mouse-map
+                                'mouse-1 #'toggle-debug-on-error))))))
+
+(put 'mode-line-debug 'risky-local-variable t)
+(make-variable-buffer-local 'mode-line-debug)
 
 (provide 'mode-line-debug)
 ;; Local Variables:
