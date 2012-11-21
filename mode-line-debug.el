@@ -1,4 +1,4 @@
-;;; mode-line-debug.el --- show status of `debug-on-error' in the mode line
+;;; mode-line-debug.el --- show status of `debug-on-error' in the mode-line
 
 ;; Copyright (C) 2012  Jonas Bernoulli
 
@@ -28,7 +28,7 @@
 
 ;;; Commentary:
 
-;; Show the status of `debug-on-error' in the mode line.
+;; Show the status of `debug-on-error' in the mode-line.
 
 ;; This provides Mode-Line-Debug mode whidh depending on the state of
 ;; `debug-on-error' inserts a different string into the mode-line
@@ -40,7 +40,7 @@
 
 ;;;###autoload
 (define-minor-mode mode-line-debug-mode
-  "Mode to show the status of `debug-on-error' in the mode line.
+  "Mode to show the status of `debug-on-error' in the mode-line.
 
 Depending on the state of `debug-on-error' this mode inserts a
 different string into the mode-line before the list of active
