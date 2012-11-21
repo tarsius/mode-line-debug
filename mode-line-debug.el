@@ -79,14 +79,23 @@ to have any effect."
           'help-echo "Debug on Error is enabled\nmouse-1 toggle"
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map
-                                'mouse-1 #'toggle-debug-on-error))))
+                                'mouse-1
+                                #'mode-line-toggle-debug-on-error))))
         (t
          (propertize
           (cdr mode-line-debug-strings)
           'help-echo "Debug on Error is disabled\nmouse-1 toggle"
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map
-                                'mouse-1 #'toggle-debug-on-error))))))
+                                'mouse-1
+                                #'mode-line-toggle-debug-on-error))))))
+
+(defun mode-line-toggle-debug-on-error (event)
+  "Toggle `debug-on-error' from the mode-line."
+  (interactive "e")
+  (with-selected-window (posn-window (event-start event))
+    (toggle-debug-on-error)
+    (force-mode-line-update)))
 
 (put 'mode-line-debug 'risky-local-variable t)
 (make-variable-buffer-local 'mode-line-debug)
