@@ -47,7 +47,7 @@ modes.  The inserted character can be used to toggle the state of
   :group 'mode-line
   ;; We cannot insert `mode-line-debug' but have to insert it's value
   ;; because we insert at the head of `mode-line-modes'. A list whose
-  ;; car is a symbol is interpreted as (SYMBOL THEN ELSE).
+  ;; car is a symbol is interpreted as (CONDITION THEN ELSE).
   (setq mode-line-modes (delete mode-line-debug mode-line-modes))
   (when mode-line-debug-mode
     (setq mode-line-modes (cons mode-line-debug mode-line-modes))))
