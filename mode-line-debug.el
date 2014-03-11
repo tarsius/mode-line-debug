@@ -23,7 +23,8 @@
 
 ;;; Commentary:
 
-;; Show the status of `debug-on-error' in the mode-line.
+;; Show the status of `debug-on-error' and `debug-on-quit'
+;; in the `mode-line'.
 
 ;;; Code:
 
@@ -62,28 +63,37 @@ to have any effect."
   '(mode-line-debug-mode (:eval (mode-line-debug-control))))
 
 (defun mode-line-debug-control ()
-  (cond (debug-on-error
+  (concat (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
+                                     'mode-line-toggle-debug-on-quit)
+          (mode-line-debug-control-1 'debug-on-error "Debug on Error"
+                                     'mode-line-toggle-debug-on-error)))
+
+(defun mode-line-debug-control-1 (var dsc cmd)
+  (cond ((symbol-value var)
          (propertize
           (car mode-line-debug-strings)
-          'help-echo "Debug on Error is enabled\nmouse-1 toggle"
+          'help-echo (concat dsc " is enabled\nmouse-1 toggle")
           'mouse-face 'mode-line-highlight
-          'local-map (purecopy (make-mode-line-mouse-map
-                                'mouse-1
-                                #'mode-line-toggle-debug-on-error))))
+          'local-map (purecopy (make-mode-line-mouse-map 'mouse-1 cmd))))
         (t
          (propertize
           (cdr mode-line-debug-strings)
-          'help-echo "Debug on Error is disabled\nmouse-1 toggle"
+          'help-echo (concat dsc " is disabled\nmouse-1 toggle")
           'mouse-face 'mode-line-highlight
-          'local-map (purecopy (make-mode-line-mouse-map
-                                'mouse-1
-                                #'mode-line-toggle-debug-on-error))))))
+          'local-map (purecopy (make-mode-line-mouse-map 'mouse-1 cmd))))))
 
 (defun mode-line-toggle-debug-on-error (event)
   "Toggle `debug-on-error' from the mode-line."
   (interactive "e")
   (with-selected-window (posn-window (event-start event))
     (toggle-debug-on-error)
+    (force-mode-line-update)))
+
+(defun mode-line-toggle-debug-on-quit (event)
+  "Toggle `debug-on-quit' from the mode-line."
+  (interactive "e")
+  (with-selected-window (posn-window (event-start event))
+    (toggle-debug-on-quit)
     (force-mode-line-update)))
 
 (put 'mode-line-debug 'risky-local-variable t)
