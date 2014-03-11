@@ -1,10 +1,8 @@
 ;;; mode-line-debug.el --- show status of `debug-on-error' in the mode-line
 
-;; Copyright (C) 2012  Jonas Bernoulli
+;; Copyright (C) 2012-2014  Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
-;; Created: 20120526
-;; Version: 1.1.0
 ;; Homepage: https://github.com/tarsius/mode-line-debug
 ;; Keywords: convenience, lisp
 
@@ -26,12 +24,6 @@
 ;;; Commentary:
 
 ;; Show the status of `debug-on-error' in the mode-line.
-
-;; This provides Mode-Line-Debug mode whidh depending on the state of
-;; `debug-on-error' inserts a different string into the mode-line
-;; before the list of active modes.  The inserted character can be
-;; used to toggle the state of `debug-on-error' can be customized
-;; using `mode-line-debug-strings'.
 
 ;;; Code:
 
