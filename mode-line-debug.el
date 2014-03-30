@@ -28,6 +28,9 @@
 
 ;;; Code:
 
+(defconst mode-line-debug
+  '(mode-line-debug-mode (:eval (mode-line-debug-control))))
+
 ;;;###autoload
 (define-minor-mode mode-line-debug-mode
   "Mode to show the status of `debug-on-error' in the mode-line.
@@ -58,9 +61,6 @@ to have any effect."
   :group 'mode-line
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
-
-(defconst mode-line-debug
-  '(mode-line-debug-mode (:eval (mode-line-debug-control))))
 
 (defun mode-line-debug-control ()
   (concat (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
