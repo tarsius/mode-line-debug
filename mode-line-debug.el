@@ -63,10 +63,10 @@ to have any effect."
                (string :tag "Off Indicator")))
 
 (defun mode-line-debug-control ()
-  (concat (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
-                                     'mode-line-toggle-debug-on-quit)
-          (mode-line-debug-control-1 'debug-on-error "Debug on Error"
-                                     'mode-line-toggle-debug-on-error)))
+  (list (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
+                                   'mode-line-toggle-debug-on-quit)
+        (mode-line-debug-control-1 'debug-on-error "Debug on Error"
+                                   'mode-line-toggle-debug-on-error)))
 
 (defun mode-line-debug-control-1 (var dsc cmd)
   (cond ((symbol-value var)
