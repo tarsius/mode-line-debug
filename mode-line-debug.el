@@ -1,6 +1,6 @@
 ;;; mode-line-debug.el --- show status of `debug-on-error' in the mode-line
 
-;; Copyright (C) 2012-2014  Jonas Bernoulli
+;; Copyright (C) 2012-2018  Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
 ;; Homepage: https://github.com/tarsius/mode-line-debug
@@ -99,6 +99,7 @@ to have any effect."
 (put 'mode-line-debug 'risky-local-variable t)
 (make-variable-buffer-local 'mode-line-debug)
 
+;;; _
 (provide 'mode-line-debug)
 ;; Local Variables:
 ;; indent-tabs-mode: nil
