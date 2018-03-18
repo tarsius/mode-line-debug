@@ -1,4 +1,4 @@
-;;; mode-line-debug.el --- show status of `debug-on-error' in the mode-line
+;;; mode-line-debug.el --- show status of `debug-on-error' in the mode-line  -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2012-2018  Jonas Bernoulli
 
