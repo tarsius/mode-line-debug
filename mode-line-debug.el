@@ -1,6 +1,6 @@
 ;;; mode-line-debug.el --- show status of `debug-on-error' in the mode-line  -*- lexical-binding: t -*-
 
-;; Copyright (C) 2012-2018  Jonas Bernoulli
+;; Copyright (C) 2012-2020  Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
 ;; Homepage: https://github.com/tarsius/mode-line-debug
@@ -46,7 +46,7 @@ modes.  The inserted character can be used to toggle the state of
             (cons mode-line-debug mode-line-misc-info)
           (delete mode-line-debug mode-line-misc-info))))
 
-(defcustom mode-line-debug-strings '("?" . " ")
+(defcustom mode-line-debug-on-error-indicators '("?" . " ")
   "Strings indicating the state of `debug-on-error' in the mode-line.
 
 The car is used when `debug-on-error' is off, the cdr when it is
@@ -60,22 +60,38 @@ to have any effect."
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
 
+(defcustom mode-line-debug-on-quit-indicators '("?" . " ")
+  "Strings indicating the state of `debug-on-quit' in the mode-line.
+
+The car is used when `debug-on-quit' is off, the cdr when it is
+off.  For the off state a string consisting of one space makes
+most sense; this avoids cluttering the mode-line but still allows
+clicking before the list of modes to toggle `debug-on-quit'.
+
+Also see `mode-line-debug-mode' which has to be enabled for this
+to have any effect."
+  :group 'mode-line
+  :type '(cons (string :tag "On Indicator")
+               (string :tag "Off Indicator")))
+
 (defun mode-line-debug-control ()
   (list (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
+                                   mode-line-debug-on-quit-indicators
                                    'mode-line-toggle-debug-on-quit)
         (mode-line-debug-control-1 'debug-on-error "Debug on Error"
+                                   mode-line-debug-on-error-indicators
                                    'mode-line-toggle-debug-on-error)))
 
-(defun mode-line-debug-control-1 (var dsc cmd)
+(defun mode-line-debug-control-1 (var dsc strings cmd)
   (cond ((symbol-value var)
          (propertize
-          (car mode-line-debug-strings)
+          (car strings)
           'help-echo (concat dsc " is enabled\nmouse-1 toggle")
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map 'mouse-1 cmd))))
         (t
          (propertize
-          (cdr mode-line-debug-strings)
+          (cdr strings)
           'help-echo (concat dsc " is disabled\nmouse-1 toggle")
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map 'mouse-1 cmd))))))
