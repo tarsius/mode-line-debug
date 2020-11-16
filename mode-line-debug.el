@@ -90,6 +90,14 @@ to have any effect."
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
 
+(defface mode-line-debug-enabled nil
+  "Face indicating an enabled `debug-on-*' in the mode-line."
+  :group 'mode-line)
+
+(defface mode-line-debug-disabled nil
+  "Face indicating an disabled `debug-on-*' in the mode-line."
+  :group 'mode-line)
+
 (defun mode-line-debug-control ()
   (list (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
                                    mode-line-debug-on-quit-indicators
@@ -105,12 +113,14 @@ to have any effect."
   (cond ((symbol-value var)
          (propertize
           (car strings)
+          'face 'mode-line-debug-enabled
           'help-echo (concat dsc " is enabled\nmouse-1 toggle")
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map 'mouse-1 cmd))))
         (t
          (propertize
           (cdr strings)
+          'face 'mode-line-debug-disabled
           'help-echo (concat dsc " is disabled\nmouse-1 toggle")
           'mouse-face 'mode-line-highlight
           'local-map (purecopy (make-mode-line-mouse-map 'mouse-1 cmd))))))
