@@ -28,6 +28,8 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
 (defconst mode-line-debug
   '(mode-line-debug-mode (:eval (mode-line-debug-control))))
 
@@ -74,13 +76,30 @@ to have any effect."
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
 
+(defcustom mode-line-debug-on-signal-indicators '("s" . " ")
+  "Strings indicating the state of `debug-on-signal' in the mode-line.
+
+The car is used when `debug-on-signal' is off, the cdr when it is
+off.  For the off state a string consisting of one space makes
+most sense; this avoids cluttering the mode-line but still allows
+clicking before the list of modes to toggle `debug-on-signal'.
+
+Also see `mode-line-debug-mode' which has to be enabled for this
+to have any effect."
+  :group 'mode-line
+  :type '(cons (string :tag "On Indicator")
+               (string :tag "Off Indicator")))
+
 (defun mode-line-debug-control ()
   (list (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
                                    mode-line-debug-on-quit-indicators
                                    'mode-line-toggle-debug-on-quit)
         (mode-line-debug-control-1 'debug-on-error "Debug on Error"
                                    mode-line-debug-on-error-indicators
-                                   'mode-line-toggle-debug-on-error)))
+                                   'mode-line-toggle-debug-on-error)
+        (mode-line-debug-control-1 'debug-on-signal "Debug on Signal"
+                                   mode-line-debug-on-signal-indicators
+                                   'mode-line-toggle-debug-on-signal)))
 
 (defun mode-line-debug-control-1 (var dsc strings cmd)
   (cond ((symbol-value var)
@@ -108,6 +127,20 @@ to have any effect."
   (interactive "e")
   (with-selected-window (posn-window (event-start event))
     (toggle-debug-on-quit)
+    (force-mode-line-update)))
+
+(cl-eval-when (compile load eval)
+  (unless (fboundp 'toggle-debug-on-signal)
+    (menu-bar-make-toggle
+     toggle-debug-on-signal debug-on-signal
+     "Enter Debugger on Signal" "Debug on Signal %s"
+     "Enter Lisp debugger regardless of condition handlers")))
+
+(defun mode-line-toggle-debug-on-signal (event)
+  "Toggle `debug-on-signal' from the mode-line."
+  (interactive "e")
+  (with-selected-window (posn-window (event-start event))
+    (toggle-debug-on-signal)
     (force-mode-line-update)))
 
 (put 'mode-line-debug 'risky-local-variable t)
