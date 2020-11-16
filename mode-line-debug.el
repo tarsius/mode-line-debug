@@ -48,7 +48,7 @@ modes.  The inserted character can be used to toggle the state of
             (cons mode-line-debug mode-line-misc-info)
           (delete mode-line-debug mode-line-misc-info))))
 
-(defcustom mode-line-debug-on-error-indicators '("?" . " ")
+(defcustom mode-line-debug-on-error-indicators '("e" . "e")
   "Strings indicating the state of `debug-on-error' in the mode-line.
 
 The car is used when `debug-on-error' is off, the cdr when it is
@@ -62,7 +62,7 @@ to have any effect."
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
 
-(defcustom mode-line-debug-on-quit-indicators '("?" . " ")
+(defcustom mode-line-debug-on-quit-indicators '("q" . "q")
   "Strings indicating the state of `debug-on-quit' in the mode-line.
 
 The car is used when `debug-on-quit' is off, the cdr when it is
@@ -76,7 +76,7 @@ to have any effect."
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
 
-(defcustom mode-line-debug-on-signal-indicators '("s" . " ")
+(defcustom mode-line-debug-on-signal-indicators '("s" . "s")
   "Strings indicating the state of `debug-on-signal' in the mode-line.
 
 The car is used when `debug-on-signal' is off, the cdr when it is
@@ -94,7 +94,7 @@ to have any effect."
   "Face indicating an enabled `debug-on-*' in the mode-line."
   :group 'mode-line)
 
-(defface mode-line-debug-disabled nil
+(defface mode-line-debug-disabled '((t :foreground "gray80"))
   "Face indicating an disabled `debug-on-*' in the mode-line."
   :group 'mode-line)
 
