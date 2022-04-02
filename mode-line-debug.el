@@ -101,13 +101,13 @@ to have any effect."
 (defun mode-line-debug-control ()
   (list (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
                                    mode-line-debug-on-quit-indicators
-                                   'mode-line-toggle-debug-on-quit)
+                                   #'mode-line-toggle-debug-on-quit)
         (mode-line-debug-control-1 'debug-on-error "Debug on Error"
                                    mode-line-debug-on-error-indicators
-                                   'mode-line-toggle-debug-on-error)
+                                   #'mode-line-toggle-debug-on-error)
         (mode-line-debug-control-1 'debug-on-signal "Debug on Signal"
                                    mode-line-debug-on-signal-indicators
-                                   'mode-line-toggle-debug-on-signal)))
+                                   #'mode-line-toggle-debug-on-signal)))
 
 (defun mode-line-debug-control-1 (var dsc strings cmd)
   (cond ((symbol-value var)
