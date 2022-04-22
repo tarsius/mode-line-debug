@@ -5,6 +5,7 @@
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
 ;; Homepage: https://github.com/tarsius/mode-line-debug
 ;; Keywords: convenience, lisp
+;; Package-Requires: ((emacs "25.1") (compat "28.1.1.0"))
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -29,6 +30,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'compat)
 
 (defconst mode-line-debug
   '(mode-line-debug-mode (:eval (mode-line-debug-control))))

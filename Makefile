@@ -5,7 +5,7 @@ PKG = mode-line-debug
 ELS   = $(PKG).el
 ELCS  = $(ELS:.el=.elc)
 
-DEPS  =
+DEPS  = compat
 
 EMACS      ?= emacs
 EMACS_ARGS ?=
