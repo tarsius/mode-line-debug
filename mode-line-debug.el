@@ -144,7 +144,7 @@ to have any effect."
 
 ;; Emacs 28 deprecates the `menu-bar-make-toggle' macro in favor
 ;; of `menu-bar-make-toggle-command', but we have keep using the
-;; former until we stop supporting Emacs 27, i.e. in a decade or
+;; former until we stop supporting Emacs 27, i.e., in a decade or
 ;; two.  Wrapping the use of that macro using `with-no-warning'
 ;; does not prevent the warning and because I am not willing to
 ;; look at it for a decade or so we have to do this dance:
