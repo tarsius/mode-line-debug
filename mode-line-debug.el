@@ -1,6 +1,6 @@
 ;;; mode-line-debug.el --- Show status of debug-on-error in mode-line  -*- lexical-binding:t -*-
 
-;; Copyright (C) 2012-2023 Jonas Bernoulli
+;; Copyright (C) 2012-2024 Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
 ;; Homepage: https://github.com/tarsius/mode-line-debug
