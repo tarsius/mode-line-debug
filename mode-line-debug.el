@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2012-2024 Jonas Bernoulli
 
-;; Author: Jonas Bernoulli <jonas@bernoul.li>
+;; Author: Jonas Bernoulli <emacs.mode-line-debug@jonas.bernoulli.dev>
 ;; Homepage: https://github.com/tarsius/mode-line-debug
 ;; Keywords: convenience lisp
 
