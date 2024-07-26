@@ -54,7 +54,7 @@ modes.  The inserted character can be used to toggle the state of
 (defcustom mode-line-debug-on-error-indicators '("e" . "e")
   "Strings indicating the state of `debug-on-error' in the mode-line.
 
-The car is used when `debug-on-error' is off, the cdr when it is
+The car is used when `debug-on-error' is on, the cdr when it is
 off.  For the off state a string consisting of one space makes
 most sense; this avoids cluttering the mode-line but still allows
 clicking before the list of modes to toggle `debug-on-error'.
@@ -68,7 +68,7 @@ to have any effect."
 (defcustom mode-line-debug-on-quit-indicators '("q" . "q")
   "Strings indicating the state of `debug-on-quit' in the mode-line.
 
-The car is used when `debug-on-quit' is off, the cdr when it is
+The car is used when `debug-on-quit' is on, the cdr when it is
 off.  For the off state a string consisting of one space makes
 most sense; this avoids cluttering the mode-line but still allows
 clicking before the list of modes to toggle `debug-on-quit'.
@@ -82,7 +82,7 @@ to have any effect."
 (defcustom mode-line-debug-on-signal-indicators '("s" . "s")
   "Strings indicating the state of `debug-on-signal' in the mode-line.
 
-The car is used when `debug-on-signal' is off, the cdr when it is
+The car is used when `debug-on-signal' is on, the cdr when it is
 off.  For the off state a string consisting of one space makes
 most sense; this avoids cluttering the mode-line but still allows
 clicking before the list of modes to toggle `debug-on-signal'.
