@@ -93,6 +93,11 @@ to have any effect."
   :type '(cons (string :tag "On Indicator")
                (string :tag "Off Indicator")))
 
+(defcustom mode-line-debug-prefix nil
+  "Mode string to prepend to the mode-line."
+  :group 'mode-line
+  :type 'string)
+
 (defface mode-line-debug-enabled nil
   "Face indicating an enabled `debug-on-*' in the mode-line."
   :group 'mode-line)
@@ -102,15 +107,17 @@ to have any effect."
   :group 'mode-line)
 
 (defun mode-line-debug-control ()
-  (list (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
-                                   mode-line-debug-on-quit-indicators
-                                   #'mode-line-toggle-debug-on-quit)
-        (mode-line-debug-control-1 'debug-on-error "Debug on Error"
-                                   mode-line-debug-on-error-indicators
-                                   #'mode-line-toggle-debug-on-error)
-        (mode-line-debug-control-1 'debug-on-signal "Debug on Signal"
-                                   mode-line-debug-on-signal-indicators
-                                   #'mode-line-toggle-debug-on-signal)))
+  (list
+   (if mode-line-debug-prefix mode-line-debug-prefix "")
+   (mode-line-debug-control-1 'debug-on-quit  "Debug on Quit"
+                              mode-line-debug-on-quit-indicators
+                              #'mode-line-toggle-debug-on-quit)
+   (mode-line-debug-control-1 'debug-on-error "Debug on Error"
+                              mode-line-debug-on-error-indicators
+                              #'mode-line-toggle-debug-on-error)
+   (mode-line-debug-control-1 'debug-on-signal "Debug on Signal"
+                              mode-line-debug-on-signal-indicators
+                              #'mode-line-toggle-debug-on-signal)))
 
 (defun mode-line-debug-control-1 (var dsc strings cmd)
   (cond ((symbol-value var)
