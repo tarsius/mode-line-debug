@@ -46,10 +46,9 @@ modes.  The inserted character can be used to toggle the state of
 `debug-on-error'."
   :global t
   :group 'mode-line
-  (setq mode-line-misc-info
-        (if mode-line-debug-mode
-            (cons mode-line-debug mode-line-misc-info)
-          (delete mode-line-debug mode-line-misc-info))))
+  (setq mode-line-misc-info (delete mode-line-debug mode-line-misc-info))
+  (when mode-line-debug-mode
+    (setq mode-line-misc-info (cons mode-line-debug mode-line-misc-info))))
 
 (defcustom mode-line-debug-on-error-indicators '("e" . "e")
   "Strings indicating the state of `debug-on-error' in the mode-line.
