@@ -7,7 +7,9 @@
 ;; Keywords: convenience lisp
 
 ;; Package-Version: 1.4.5
-;; Package-Requires: ((emacs "26.1") (compat "30.1"))
+;; Package-Requires: (
+;;     (emacs  "28.1")
+;;     (compat "30.1"))
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -142,23 +144,14 @@ to have any effect."
     (toggle-debug-on-quit)
     (force-mode-line-update)))
 
-;; Emacs 28 deprecates the `menu-bar-make-toggle' macro in favor
-;; of `menu-bar-make-toggle-command', but we have keep using the
-;; former until we stop supporting Emacs 27, i.e., in a decade or
-;; two.  Wrapping the use of that macro using `with-no-warning'
-;; does not prevent the warning and because I am not willing to
-;; look at it for a decade or so we have to do this dance:
-(eval-when-compile
-  (put 'menu-bar-make-toggle 'byte-obsolete-info nil))
 (cl-eval-when (compile load eval)
   (unless (fboundp 'toggle-debug-on-signal)
-    (menu-bar-make-toggle
+    ;; `toggle-debug-on-quit' and `toggle-debug-on-error'
+    ;;  are defined like this in `menu-bar-options-menu'.
+    (menu-bar-make-toggle-command
      toggle-debug-on-signal debug-on-signal
      "Enter Debugger on Signal" "Debug on Signal %s"
      "Enter Lisp debugger regardless of condition handlers")))
-(eval-when-compile
-  (put 'menu-bar-make-toggle 'byte-obsolete-info
-       (list 'menu-bar-make-toggle-command nil "28.1")))
 
 (defun mode-line-toggle-debug-on-signal (event)
   "Toggle `debug-on-signal' from the mode-line."
