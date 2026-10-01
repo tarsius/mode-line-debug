@@ -5,5 +5,6 @@ of the variables ~debug-on-error~ and ~debug-on-quit~ the mode line.
 
 #+html: <br><br>
 #+html: <a href="https://github.com/tarsius/mode-line-debug/actions/workflows/compile.yml"><img alt="Compile" src="https://github.com/tarsius/mode-line-debug/actions/workflows/compile.yml/badge.svg"/></a>
-#+html: <a href="https://stable.melpa.org/#/mode-line-debug"><img alt="MELPA Stable" src="https://stable.melpa.org/packages/mode-line-debug-badge.svg"/></a>
-#+html: <a href="https://melpa.org/#/mode-line-debug"><img alt="MELPA" src="https://melpa.org/packages/mode-line-debug-badge.svg"/></a>
+#+html: <a href="https://snapshots.melpa.org/#/mode-line-debug"><img alt="MELPA Snapshots" src="https://snapshots.melpa.org/packages/mode-line-debug-badge.svg"/></a>
+#+html: <a href="https://releases.melpa.org/#/mode-line-debug"><img alt="MELPA Releases" src="https://releases.melpa.org/packages/mode-line-debug-badge.svg"/></a>
+#+html: <a href="https://emacsair.me/human"><img alt="human made" src="https://emacsair.me/assets/badges/human.svg"/></a>
